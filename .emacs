@@ -19,3 +19,7 @@
  )
 
 (global-linum-mode t)
+(setq linum-format "%d ")
+
+;; https://www.emacswiki.org/emacs/DeletingWhitespace#toc3
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
