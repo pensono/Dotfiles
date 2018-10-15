@@ -2,4 +2,8 @@
 color desert
 set number
 set autoindent
-set mouse=a
+
+" https://superuser.com/a/698978
+if has('mouse')
+  set mouse=a
+endif
