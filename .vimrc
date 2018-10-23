@@ -7,3 +7,7 @@ set autoindent
 if has('mouse')
   set mouse=a
 endif
+
+" Globally prefer spaces to tabs
+set expandtab
+
