@@ -33,3 +33,8 @@ __prompt_command() {
     PS1+="${RCol}${BBlu}\u@\h ${BYel}\w${RCol}\$ "
     #PS1+="\u@\h \w${RCol}\$ "
 }
+
+
+# https://linuxcommando.blogspot.com/2007/10/grep-with-color-output.html
+export GREP_OPTIONS='--color=always'
+
