@@ -38,3 +38,6 @@ __prompt_command() {
 # https://linuxcommando.blogspot.com/2007/10/grep-with-color-output.html
 export GREP_OPTIONS='--color=always'
 
+# Make sure globstar is on
+# https://stackoverflow.com/questions/793715/unable-to-enable-globstar-in-bash-4#793910
+shopt -s globstar
