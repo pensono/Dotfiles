@@ -1,10 +1,9 @@
+
 function Write-Progress($message) {
     Write-Host $message -ForegroundColor Cyan
 }
 
-
 function Install-Prerequisites() {
-    Set-ExecutionPolicy Bypass -Scope Process -Force
      [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
@@ -33,7 +32,7 @@ function Install-Keyboard() {
 
 function Install-BaseApplications() {
     Write-Progress "Installing Base Applications"
-    #choco install -y firefox vscode git 7zip vlc spotify windirstat sharex everything
+    choco install -y firefox vscode git 7zip vlc spotify windirstat sharex everything telegram
     
     Write-Progress "Installing Firefox extensions"
     $extensions = 
@@ -55,16 +54,29 @@ function Install-PersonalApplications() {
     choco install -y discord steam
 }
 
-function BaseSetup() {
+function Install-WorkApplications() {
+    Write-Progress "Installing Work Applications"
+    choco install -y office-tool microsoft-teams
+
+    & "C:\Program Files\Mozilla Firefox\firefox.exe" -new-tab "https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Enterprise&rel=16"
+}
+
+function Install-Base() {
     Install-Prerequisites
     Set-ExecutionPolicy Unrestricted -Force
     Setup-Desktop
     Setup-Explorer
+    Install-BaseApplications
 }
 
 function Install-Personal() {
     Install-Base
     Install-PersonalApplications
+}
+
+function Install-Work() {
+    Install-Base
+    Install-WorkApplications
 }
 
 cd $PSScriptRoot
