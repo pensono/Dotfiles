@@ -47,6 +47,10 @@ function Install-BaseApplications() {
 
     Write-Progress "Configuring Firefox. Not implemented yet."
     $prefsFile = "%APPDATA%\Mozilla\Firefox\Profiles\*.default-release\prefs.js"
+    
+    Write-Progress "Configuring git."
+    # TODO move this into a common file shared with linux
+    git config --global alias.lb "!git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' --count=`${1:-15}"
 }
 
 function Install-PersonalApplications() {
