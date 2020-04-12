@@ -1,7 +1,7 @@
+
 function Write-Progress($message) {
     Write-Host $message -ForegroundColor Cyan
 }
-
 
 function Install-Prerequisites() {
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
@@ -39,7 +39,7 @@ function Install-FirefoxExtension($ExtensionUrl) {
 
 function Install-BaseApplications() {
     Write-Progress "Installing Base Applications"
-    choco install -y firefox vscode git 7zip vlc spotify windirstat sharex everything
+    choco install -y firefox vscode git 7zip vlc spotify windirstat sharex everything telegram
     
     Write-Progress "Installing Firefox extensions"
     Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3509837/lastpass_password_manager.xpi"
@@ -47,6 +47,10 @@ function Install-BaseApplications() {
 
     Write-Progress "Configuring Firefox. Not implemented yet."
     $prefsFile = "%APPDATA%\Mozilla\Firefox\Profiles\*.default-release\prefs.js"
+    
+    Write-Progress "Configuring git."
+    # TODO move this into a common file shared with linux
+    git config --global alias.lb "!git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' --count=`${1:-15}"
 }
 
 function Install-PersonalApplications() {
@@ -59,16 +63,29 @@ function Install-PersonalApplications() {
     Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3531227/honey.xpi"
 }
 
-function BaseSetup() {
+function Install-WorkApplications() {
+    Write-Progress "Installing Work Applications"
+    choco install -y office-tool microsoft-teams
+
+    & "C:\Program Files\Mozilla Firefox\firefox.exe" -new-tab "https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Enterprise&rel=16"
+}
+
+function Install-Base() {
     Install-Prerequisites
     Set-ExecutionPolicy Unrestricted -Force
     Setup-Desktop
     Setup-Explorer
+    Install-BaseApplications
 }
 
 function Install-Personal() {
     Install-Base
     Install-PersonalApplications
+}
+
+function Install-Work() {
+    Install-Base
+    Install-WorkApplications
 }
 
 cd $PSScriptRoot
