@@ -24,6 +24,10 @@ function Setup-Desktop() {
 function Install-Keyboard() {
     Write-Progress "Installing Programmer Dvorak"
     choco install programmer-dvorak -y
+    $LanguageList = New-WinUserLanguageList -Language en-US
+    $LanguageList[0].InputMethodTips[0] = "0409:19360409"
+    $LanguageList[0].InputMethodTips.Add("0409:00000409")
+    Set-WinUserLanguageList $LanguageList
 
     Write-Progress "Mapping capslock to backspace and right shift to delete"
     Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout" ScancodeMap ([byte[]](0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x0e,0x00,0x3a,0x00,0x53,0xe0,0x36,0x00,0x00,0x00,0x00,0x00))
