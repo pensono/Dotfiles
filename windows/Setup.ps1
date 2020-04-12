@@ -55,7 +55,7 @@ function Install-BaseApplications() {
 
 function Install-PersonalApplications() {
     Write-Progress "Installing Personal Applications"
-    choco install -y discord steam jetbrainstoolbox intellijidea-ultimate
+    choco install -y discord steam jetbrainstoolbox openjdk
     
     Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3515793/reddit_enhancement_suite.xpi",
     Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3304129/imagus.xpi"
