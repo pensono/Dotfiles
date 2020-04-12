@@ -19,8 +19,7 @@ function Setup-Explorer() {
 
 function Setup-Desktop() {
     Write-Progress "Only display taskbar on the main monitor"
-    echo $PSScriptRoot\Disable_show_taskbar_on_all_displays.reg
-    Invoke-Command { reg import "$PSScriptRoot\Disable_show_taskbar_on_all_displays.reg" }
+    Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" MMTaskbarEnabled -Type dword 1
 }
 
 function Install-Keyboard() {
