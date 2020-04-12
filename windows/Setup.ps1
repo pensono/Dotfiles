@@ -31,20 +31,17 @@ function Install-Keyboard() {
     Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout" ScancodeMap ([byte[]](0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x0e,0x00,0x3a,0x00,0x53,0xe0,0x36,0x00,0x00,0x00,0x00,0x00))
 }
 
+function Install-FirefoxExtension($ExtensionUrl) {
+    & "C:\Program Files\Mozilla Firefox\firefox.exe" -new-tab $ExtensionUrl
+}
+
 function Install-BaseApplications() {
     Write-Progress "Installing Base Applications"
-    #choco install -y firefox vscode git 7zip vlc spotify windirstat sharex everything
+    choco install -y firefox vscode git 7zip vlc spotify windirstat sharex everything
     
     Write-Progress "Installing Firefox extensions"
-    $extensions = 
-        "https://addons.mozilla.org/firefox/downloads/file/3509837/lastpass_password_manager-4.42.0.2-fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3474268/ghostery_privacy_ad_blocker-8.4.6-an+fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3515793/reddit_enhancement_suite-5.18.11-an+fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3304129/imagus-0.9.8.72-fx.xpi"
-
-    $extensions | ForEach {
-        & "C:\Program Files\Mozilla Firefox\firefox.exe" -new-tab $_
-    }    
+    Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3509837/lastpass_password_manager.xpi"
+    Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3474268/ghostery_privacy_ad_blocker.xpi"
 
     Write-Progress "Configuring Firefox. Not implemented yet."
     $prefsFile = "%APPDATA%\Mozilla\Firefox\Profiles\*.default-release\prefs.js"
@@ -53,6 +50,11 @@ function Install-BaseApplications() {
 function Install-PersonalApplications() {
     Write-Progress "Installing Personal Applications"
     choco install -y discord steam
+    
+    Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3515793/reddit_enhancement_suite.xpi",
+    Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3304129/imagus.xpi"
+    Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3519841/facebook_containe.xpi"
+    Install-FirefoxExtension "https://addons.mozilla.org/firefox/downloads/file/3531227/honey.xpi"
 }
 
 function BaseSetup() {
