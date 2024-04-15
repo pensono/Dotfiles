@@ -10,3 +10,6 @@ mkdir -p ~/Library/KeyBindings
 cp $(dirname "$0")/DefaultKeyBinding.dict ~/Library/KeyBindings
 
 $(dirname "$0")/../shared/git_setup.sh
+
+# Install apps
+brew install --cask raycast
