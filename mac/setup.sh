@@ -13,3 +13,8 @@ $(dirname "$0")/../shared/git_setup.sh
 
 # Install apps
 brew install --cask raycast
+
+# Better git diff
+# https://x.com/rauchg/status/1831421759666676165
+brew install delta
+git config --global core.pager "delta"
