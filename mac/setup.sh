@@ -13,6 +13,11 @@ cp $(dirname "$0")/DefaultKeyBinding.dict ~/Library/KeyBindings
 
 $(dirname "$0")/../shared/git_setup.sh
 
+# Better git diff
+# https://x.com/rauchg/status/1831421759666676165
+brew install delta
+git config --global core.pager "delta"
+
 # Install Homebrew
 if ! [ -x "$(command -v brew)" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -24,7 +29,16 @@ fi
 # Install apps
 brew install --cask raycast visual-studio-code ghostty programmer-dvorak spotify
 
-# Better git diff
-# https://x.com/rauchg/status/1831421759666676165
-brew install delta
-git config --global core.pager "delta"
+if ! [ -x "$(command -v nvm)" ]; then
+    # https://nodejs.org/en/download
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    nvm install 22
+
+    # Post-install
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+corepack enable pnpm
+
