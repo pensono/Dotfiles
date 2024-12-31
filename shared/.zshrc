@@ -15,4 +15,4 @@ COLOR_USR=$'%F{243}'
 COLOR_DIR=$'%F{197}'
 COLOR_GIT=$'%F{39}'
 setopt PROMPT_SUBST
-export PROMPT='$(set_terminal_title)$(status_emoji)${COLOR_GIT}$(parse_git_branch) ${COLOR_DIR}%~${COLOR_DEF} $ '
+export PROMPT='$(set_terminal_title)$(status_emoji)${COLOR_GIT}$(parse_git_branch) ${COLOR_DIR}%~${COLOR_USR}$${COLOR_DEF} '
