@@ -1,6 +1,9 @@
 set -e
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo >> /Users/$USER/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/$USER/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 # https://apple.stackexchange.com/a/324832
 # Rebind capslock to backspace and right shift to shift-delete
