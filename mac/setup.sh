@@ -1,5 +1,7 @@
 set -e
 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # https://apple.stackexchange.com/a/324832
 # Rebind capslock to backspace and right shift to shift-delete
 mkdir -p ~/Library/LaunchAgents
