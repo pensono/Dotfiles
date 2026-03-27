@@ -38,13 +38,13 @@ git config --global core.pager "delta"
 # Setup GitHub ssh key
 ssh-keygen -t ed25519 -C "ethan.shea1@gmail.com"
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-gh auth login
 
 echo "Host github.com" >> ~/.ssh/config
 echo "  AddKeysToAgent yes" >> ~/.ssh/config
 echo "  UseKeychain yes" >> ~/.ssh/config
 echo "  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
 
+gh auth login
 
 if ! [ -x "$(command -v nvm)" ]; then
     # https://nodejs.org/en/download
