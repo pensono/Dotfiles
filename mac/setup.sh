@@ -11,6 +11,11 @@ launchctl load ~/Library/LaunchAgents/keyboardremap.plist
 mkdir -p ~/Library/KeyBindings
 cp $(dirname "$0")/DefaultKeyBinding.dict ~/Library/KeyBindings
 
+# fn keys work by default
+defaults write -g com.apple.keyboard.fnState -boolean false
+# Globe key activates emoji picker
+defaults write -g PressFunctionKey -int 4
+
 $(dirname "$0")/../shared/git_setup.sh
 
 # Install Homebrew
@@ -22,7 +27,7 @@ if ! [ -x "$(command -v brew)" ]; then
 fi
 
 # Install apps
-brew install --cask raycast visual-studio-code ghostty programmer-dvorak spotify cursor google-chrome bitwarden
+brew install --cask raycast visual-studio-code ghostty programmer-dvorak spotify cursor google-chrome bitwarden rectangle notion
 
 # Better git diff
 # https://x.com/rauchg/status/1831421759666676165
