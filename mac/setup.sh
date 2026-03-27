@@ -28,11 +28,23 @@ fi
 
 # Install apps
 brew install --cask raycast visual-studio-code ghostty programmer-dvorak spotify cursor google-chrome bitwarden rectangle notion
+brew install gh
 
 # Better git diff
 # https://x.com/rauchg/status/1831421759666676165
 brew install delta
 git config --global core.pager "delta"
+
+# Setup GitHub ssh key
+ssh-keygen -t ed25519 -C "ethan.shea1@gmail.com"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+gh auth login
+
+echo "Host github.com" >> ~/.ssh/config
+echo "  AddKeysToAgent yes" >> ~/.ssh/config
+echo "  UseKeychain yes" >> ~/.ssh/config
+echo "  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
+
 
 if ! [ -x "$(command -v nvm)" ]; then
     # https://nodejs.org/en/download
@@ -47,5 +59,7 @@ if ! [ -x "$(command -v nvm)" ]; then
     nvm install node
 fi
 
-corepack enable pnpm
+# Install pnpm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+source /Users/ethan/.zshrc
 
