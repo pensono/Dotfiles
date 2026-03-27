@@ -18,6 +18,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 
 ```
 # Run from Terminal
-git clone https://github.com/pensono/Dotfiles.git # Developer tools will install
-./Dotfiles/mac/setup.sh
+curl https://raw.githubusercontent.com/pensono/Dotfiles/refs/heads/master/mac/bootstrap.sh | bash
 ```
