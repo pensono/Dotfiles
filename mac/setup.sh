@@ -27,7 +27,7 @@ if ! [ -x "$(command -v brew)" ]; then
 fi
 
 # Install apps
-brew install --cask raycast visual-studio-code ghostty programmer-dvorak spotify cursor google-chrome bitwarden rectangle notion cleanshot
+brew install --cask raycast visual-studio-code ghostty programmer-dvorak spotify cursor google-chrome bitwarden rectangle notion cleanshot httpie-desktop
 brew install gh
 
 # Better git diff
