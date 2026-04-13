@@ -7,7 +7,7 @@ function status_emoji() {
 }
 
 function set_terminal_title() {
-    echo -en "\e]0;%~\a"
+    print -Pn "\e]0;%~\a"
 }
 
 COLOR_DEF=$'%f'
@@ -15,4 +15,4 @@ COLOR_USR=$'%F{243}'
 COLOR_DIR=$'%F{197}'
 COLOR_GIT=$'%F{39}'
 setopt PROMPT_SUBST
-export PROMPT='$(set_terminal_title)$(status_emoji)${COLOR_GIT}$(parse_git_branch) ${COLOR_DIR}%~${COLOR_USR}$${COLOR_DEF} '
+export PROMPT='%{$(set_terminal_title)%}$(status_emoji)${COLOR_GIT}$(parse_git_branch) ${COLOR_DIR}%~${COLOR_USR}$${COLOR_DEF} '
