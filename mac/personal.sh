@@ -1,6 +1,6 @@
 set -e
 
-brew install --cask steam bitwarden notion telegram
+brew install --cask steam bitwarden notion telegram ffmpeg
 
 git config --global user.name "Ethan Shea"
 git config --global user.email "ethan.shea1@gmail.com"
